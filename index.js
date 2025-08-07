@@ -21,6 +21,7 @@ app.use(cookieParser());
 
 app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/products', productRoutes);
 
 app.get('/', (req, res)=>{
     res.send('E-commerce platform API')
