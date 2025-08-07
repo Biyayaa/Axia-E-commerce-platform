@@ -1,7 +1,7 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
-module.exports = (req, res, next) => {
+const auth = (req, res, next) => {
   const token = req.cookies.token;
   if (!token) return res.status(401).json({ error: 'Unauthorized' });
   try {
@@ -12,3 +12,5 @@ module.exports = (req, res, next) => {
     res.status(403).json({ error: 'Invalid token' });
   }
 };
+
+module.exports = auth;
