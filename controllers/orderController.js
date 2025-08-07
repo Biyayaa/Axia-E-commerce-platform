@@ -13,7 +13,7 @@ exports.placeOrder = async (req, res) => {
 
     // Check stock
     for (let item of cart.items) {
-      if (item.quantity > item.product.quantity) {
+      if (item.quantity > item.product.stock) {
         return res
           .status(400)
           .json({ error: `Insufficient stock for ${item.product.name}` });
@@ -22,7 +22,7 @@ exports.placeOrder = async (req, res) => {
 
     // Reduce stock
     for (let item of cart.items) {
-      item.product.quantity -= item.quantity;
+      item.product.stock -= item.quantity;
       await item.product.save();
     }
 
