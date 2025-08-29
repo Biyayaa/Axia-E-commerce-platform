@@ -8,7 +8,6 @@ const productRoutes = require('./routes/productRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
-const auth = require('./middleware/authMiddleware');
 const cookieParser = require('cookie-parser');
 
 const app = express();
