@@ -5,6 +5,16 @@ const bcrypt = require('bcrypt');
 exports.register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    // Check if user already exists
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res.status(400).json({
+          success: false,
+          message: 'User already exists with this email'
+        });
+      }
+
+
     const user = await User.create({ username, email, password });
     res.status(201).json({ message: 'User registered' });
   } catch (err) {
@@ -22,7 +32,6 @@ exports.login = async (req, res) => {
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.cookie('token', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
       sameSite: 'Strict',
       maxAge: 7 * 24 * 60 * 60 * 1000
     });

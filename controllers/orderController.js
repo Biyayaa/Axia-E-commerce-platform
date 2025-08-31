@@ -78,7 +78,7 @@ exports.getAllOrders = async (req, res) => {
   }
 };
 
-// 4. Admin updates order status
+// Admin update order status
 exports.updateOrderStatus = async (req, res) => {
   try {
     const { orderId } = req.params;

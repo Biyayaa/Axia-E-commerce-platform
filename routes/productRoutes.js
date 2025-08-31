@@ -6,7 +6,7 @@ const adminMiddleware = require('../middleware/adminMiddleware');
 const { validateCreateProduct } = require('../validators/productValidator');
 
 
-router.get('/', auth, getAllProducts);
+router.get('/', getAllProducts);
 router.get('/category/:category', getProductsByCategory);
 router.post('/', auth, adminMiddleware, validateCreateProduct, createProduct);
 router.put('/:id', auth, adminMiddleware, updateProduct);
